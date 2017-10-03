@@ -1,11 +1,11 @@
 <?php
 /**
- * PHP Library for Amazon Alexa Skills
+ * Zend Framework Library for Amazon Alexa Skills
  *
- * @author     Ralf Eggert <ralf@travello.de>
+ * @author     Ralf Eggert <ralf@travello.audio>
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
- * @link       https://github.com/travello-gmbh/amazon-alexa-skill-library
- * @link       https://www.travello.de/
+ * @link       https://github.com/travello-gmbh/amazon-alexa-skill-zf
+ * @link       https://www.travello.audio/
  *
  */
 
@@ -21,14 +21,14 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\StreamInterface;
 use TravelloAlexaLibrary\Request\AlexaRequest;
 use TravelloAlexaLibrary\Request\RequestType\RequestTypeFactory;
-use TravelloAlexaZf\Middleware\InjectAlexaRequestMiddleware;
+use TravelloAlexaZf\Middleware\LogAlexaRequestMiddleware;
 
 /**
- * Class InjectAlexaRequestMiddlewareTest
+ * Class LogAlexaRequestMiddlewareTest
  *
  * @package TravelloAlexaZfTest\Middleware
  */
-class InjectAlexaRequestMiddlewareTest extends TestCase
+class LogAlexaRequestMiddlewareTest extends TestCase
 {
     /**
      *
@@ -51,7 +51,7 @@ class InjectAlexaRequestMiddlewareTest extends TestCase
         $delegate = $this->prophesize(DelegateInterface::class);
         $delegate->process($request->reveal())->willReturn($response);
 
-        $middleware = new InjectAlexaRequestMiddleware();
+        $middleware = new LogAlexaRequestMiddleware();
 
         $result = $middleware->process($request->reveal(), $delegate->reveal());
 
@@ -83,26 +83,8 @@ class InjectAlexaRequestMiddlewareTest extends TestCase
             ],
         ];
 
-        $alexaRequest = RequestTypeFactory::createFromData(
-            json_encode($data)
-        );
-
-        /** @var StreamInterface|ObjectProphecy $stream */
-        $stream = $this->prophesize(StreamInterface::class);
-
-        /** @var MethodProphecy $getContentsMethod */
-        $getContentsMethod = $stream->getContents();
-        $getContentsMethod->shouldBeCalled()->willReturn(json_encode($data));
-
         /** @var ServerRequestInterface|ObjectProphecy $request */
         $request = $this->prophesize(ServerRequestInterface::class);
-
-        /** @var MethodProphecy $withAttributeMethod */
-        $withAttributeMethod = $request->withAttribute(
-            AlexaRequest::NAME,
-            $alexaRequest
-        );
-        $withAttributeMethod->shouldBeCalled()->willReturn($request->reveal());
 
         /** @var MethodProphecy $getMethod */
         $getMethod = $request->getMethod();
@@ -114,10 +96,6 @@ class InjectAlexaRequestMiddlewareTest extends TestCase
         $getHeaderMethod1 = $request->getHeaderLine('signaturecertchainurl');
         $getHeaderMethod1->shouldBeCalled()->willReturn(['foo']);
 
-        /** @var MethodProphecy|StreamInterface $getBodyMethod */
-        $getBodyMethod = $request->getBody();
-        $getBodyMethod->shouldBeCalled()->willReturn($stream);
-
         /** @var ResponseInterface|ObjectProphecy $response */
         $response = $this->prophesize(ResponseInterface::class)->reveal();
 
@@ -125,7 +103,7 @@ class InjectAlexaRequestMiddlewareTest extends TestCase
         $delegate = $this->prophesize(DelegateInterface::class);
         $delegate->process($request->reveal())->willReturn($response);
 
-        $middleware = new InjectAlexaRequestMiddleware();
+        $middleware = new LogAlexaRequestMiddleware();
 
         $result = $middleware->process($request->reveal(), $delegate->reveal());
 

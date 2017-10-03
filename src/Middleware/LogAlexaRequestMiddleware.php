@@ -1,11 +1,11 @@
 <?php
 /**
- * PHP Library for Amazon Alexa Skills
+ * Zend Framework Library for Amazon Alexa Skills
  *
- * @author     Ralf Eggert <ralf@travello.de>
+ * @author     Ralf Eggert <ralf@travello.audio>
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
- * @link       https://github.com/travello-gmbh/amazon-alexa-skill-library
- * @link       https://www.travello.de/
+ * @link       https://github.com/travello-gmbh/amazon-alexa-skill-zf
+ * @link       https://www.travello.audio/
  *
  */
 
@@ -15,15 +15,13 @@ use Fig\Http\Message\RequestMethodInterface;
 use Interop\Http\ServerMiddleware\DelegateInterface;
 use Interop\Http\ServerMiddleware\MiddlewareInterface as ServerMiddlewareInterface;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use TravelloAlexaLibrary\Request\AlexaRequest;
-use TravelloAlexaLibrary\Request\RequestType\RequestTypeFactory;
 
 /**
  * Class InjectAlexaRequestMiddleware
  *
  * @package TravelloAlexaZf\Middleware
  */
-class InjectAlexaRequestMiddleware implements ServerMiddlewareInterface
+class LogAlexaRequestMiddleware implements ServerMiddlewareInterface
 {
     /** @var bool */
     private $logFlag = false;
@@ -64,15 +62,6 @@ class InjectAlexaRequestMiddleware implements ServerMiddlewareInterface
                     json_encode($request->getHeaders(), JSON_PRETTY_PRINT)
                 );
             }
-
-            $alexaRequest = RequestTypeFactory::createFromData(
-                $request->getBody()->getContents()
-            );
-
-            $request = $request->withAttribute(
-                AlexaRequest::NAME,
-                $alexaRequest
-            );
         }
 
         return $delegate->process($request);

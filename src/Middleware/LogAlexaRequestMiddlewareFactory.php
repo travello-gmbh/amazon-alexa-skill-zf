@@ -1,11 +1,11 @@
 <?php
 /**
- * PHP Library for Amazon Alexa Skills
+ * Zend Framework Library for Amazon Alexa Skills
  *
- * @author     Ralf Eggert <ralf@travello.de>
+ * @author     Ralf Eggert <ralf@travello.audio>
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
- * @link       https://github.com/travello-gmbh/amazon-alexa-skill-library
- * @link       https://www.travello.de/
+ * @link       https://github.com/travello-gmbh/amazon-alexa-skill-zf
+ * @link       https://www.travello.audio/
  *
  */
 
@@ -15,11 +15,11 @@ use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
 /**
- * Class InjectAlexaRequestMiddlewareFactory
+ * Class LogAlexaRequestMiddlewareFactory
  *
  * @package TravelloAlexaZf\Middleware
  */
-class InjectAlexaRequestMiddlewareFactory implements FactoryInterface
+class LogAlexaRequestMiddlewareFactory implements FactoryInterface
 {
     /**
      * @param ContainerInterface $container
@@ -40,8 +40,6 @@ class InjectAlexaRequestMiddlewareFactory implements FactoryInterface
             }
         }
 
-        return new InjectAlexaRequestMiddleware(
-            $flag
-        );
+        return new LogAlexaRequestMiddleware($flag);
     }
 }

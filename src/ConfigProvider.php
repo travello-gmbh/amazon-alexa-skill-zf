@@ -1,23 +1,26 @@
 <?php
 /**
- * PHP Library for Amazon Alexa Skills
+ * Zend Framework Library for Amazon Alexa Skills
  *
- * @author     Ralf Eggert <ralf@travello.de>
+ * @author     Ralf Eggert <ralf@travello.audio>
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
- * @link       https://github.com/travello-gmbh/amazon-alexa-skill-library
- * @link       https://www.travello.de/
+ * @link       https://github.com/travello-gmbh/amazon-alexa-skill-zf
+ * @link       https://www.travello.audio/
  *
  */
 
 namespace TravelloAlexaZf;
 
+use TravelloAlexaLibrary\Request\AlexaRequest;
 use TravelloAlexaLibrary\Request\Certificate\CertificateLoader;
-use TravelloAlexaLibrary\Request\Certificate\CertificateValidatorFactory;
-use TravelloAlexaZf\Middleware\InjectAlexaRequestMiddleware;
-use TravelloAlexaZf\Middleware\InjectAlexaRequestMiddlewareFactory;
-use TravelloAlexaZf\Middleware\InjectCertificateValidatorMiddleware;
-use TravelloAlexaZf\Middleware\InjectCertificateValidatorMiddlewareFactory;
+use TravelloAlexaLibrary\Request\Certificate\CertificateValidator;
+use TravelloAlexaLibrary\Request\Certificate\CertificateValidatorFactory as TravelloCertificateValidatorFactory;
+use TravelloAlexaLibrary\Response\AlexaResponse;
+use TravelloAlexaZf\Middleware\LogAlexaRequestMiddleware;
+use TravelloAlexaZf\Middleware\LogAlexaRequestMiddlewareFactory;
+use TravelloAlexaZf\Request\AlexaRequestFactory;
 use TravelloAlexaZf\Request\Certificate\CertificateLoaderFactory;
+use TravelloAlexaZf\Request\Certificate\CertificateValidatorFactory;
 use Zend\ServiceManager\Factory\InvokableFactory;
 
 /**
@@ -35,17 +38,14 @@ class ConfigProvider
         return [
             'dependencies' => [
                 'factories' => [
-                    CertificateLoader::class =>
-                        CertificateLoaderFactory::class,
+                    AlexaRequest::class  => AlexaRequestFactory::class,
+                    AlexaResponse::class => InvokableFactory::class,
 
-                    CertificateValidatorFactory::class =>
-                        InvokableFactory::class,
+                    CertificateLoader::class                   => CertificateLoaderFactory::class,
+                    TravelloCertificateValidatorFactory::class => InvokableFactory::class,
+                    CertificateValidator::class                => CertificateValidatorFactory::class,
 
-                    InjectAlexaRequestMiddleware::class =>
-                        InjectAlexaRequestMiddlewareFactory::class,
-
-                    InjectCertificateValidatorMiddleware::class =>
-                        InjectCertificateValidatorMiddlewareFactory::class,
+                    LogAlexaRequestMiddleware::class => LogAlexaRequestMiddlewareFactory::class,
                 ],
             ],
         ];
