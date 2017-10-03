@@ -39,6 +39,7 @@ class CertificateValidatorFactory implements FactoryInterface
 
         $certificateValidatorFactory = new TravelloCertificateValidatorFactory();
 
+        $alexaRequest      = $container->get(AlexaRequest::class);
         $certificateLoader = $container->get(CertificateLoader::class);
 
         $config = $container->get('config');
@@ -55,7 +56,7 @@ class CertificateValidatorFactory implements FactoryInterface
         $certificateValidator = $certificateValidatorFactory->create(
             $serverRequest->getHeader('signaturecertchainurl')[0],
             $serverRequest->getHeader('signature')[0],
-            $serverRequest->getAttribute(AlexaRequest::class),
+            $alexaRequest,
             $certificateLoader,
             $flag
         );
