@@ -14,7 +14,6 @@ namespace TravelloAlexaZf;
 use TravelloAlexaLibrary\Request\AlexaRequest;
 use TravelloAlexaLibrary\Request\Certificate\CertificateLoader;
 use TravelloAlexaLibrary\Request\Certificate\CertificateValidator;
-use TravelloAlexaLibrary\Request\Certificate\CertificateValidatorFactory as TravelloCertificateValidatorFactory;
 use TravelloAlexaLibrary\Response\AlexaResponse;
 use TravelloAlexaZf\Middleware\LogAlexaRequestMiddleware;
 use TravelloAlexaZf\Middleware\LogAlexaRequestMiddlewareFactory;
@@ -41,9 +40,8 @@ class ConfigProvider
                     AlexaRequest::class  => AlexaRequestFactory::class,
                     AlexaResponse::class => InvokableFactory::class,
 
-                    CertificateLoader::class                   => CertificateLoaderFactory::class,
-                    TravelloCertificateValidatorFactory::class => InvokableFactory::class,
-                    CertificateValidator::class                => CertificateValidatorFactory::class,
+                    CertificateLoader::class    => CertificateLoaderFactory::class,
+                    CertificateValidator::class => CertificateValidatorFactory::class,
 
                     LogAlexaRequestMiddleware::class => LogAlexaRequestMiddlewareFactory::class,
                 ],

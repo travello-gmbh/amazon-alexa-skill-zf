@@ -15,9 +15,9 @@ use Interop\Container\ContainerInterface;
 use TravelloAlexaLibrary\Request\AlexaRequest;
 use TravelloAlexaLibrary\Request\Certificate\CertificateLoader;
 use TravelloAlexaLibrary\Request\Certificate\CertificateValidator;
+use TravelloAlexaLibrary\Request\Certificate\CertificateValidatorFactory as TravelloCertificateValidatorFactory;
 use Zend\Diactoros\ServerRequestFactory;
 use Zend\ServiceManager\Factory\FactoryInterface;
-use TravelloAlexaLibrary\Request\Certificate\CertificateValidatorFactory as TravelloCertificateValidatorFactory;
 
 /**
  * Class CertificateValidatorFactory
@@ -37,9 +37,9 @@ class CertificateValidatorFactory implements FactoryInterface
     {
         $serverRequest = ServerRequestFactory::fromGlobals();
 
-        /** @var TravelloCertificateValidatorFactory $certificateValidatorFactory */
-        $certificateValidatorFactory = $container->get(TravelloCertificateValidatorFactory::class);
-        $certificateLoader           = $container->get(CertificateLoader::class);
+        $certificateValidatorFactory = new TravelloCertificateValidatorFactory();
+
+        $certificateLoader = $container->get(CertificateLoader::class);
 
         $config = $container->get('config');
 
