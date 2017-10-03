@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "a4f55cb68b200abc977f5b9a79a46efc",
+    "content-hash": "77feff9e5452684e0c547b0022a4d904",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -332,7 +332,7 @@
         },
         {
             "name": "travello-gmbh/amazon-alexa-skill-library",
-            "version": "dev-develop",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/travello-gmbh/amazon-alexa-skill-library.git",
@@ -2062,9 +2062,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "travello-gmbh/amazon-alexa-skill-library": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
