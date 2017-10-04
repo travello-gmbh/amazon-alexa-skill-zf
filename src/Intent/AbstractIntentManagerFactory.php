@@ -20,7 +20,7 @@ use Zend\ServiceManager\Factory\FactoryInterface;
  *
  * @package Hello\Intent
  */
-abstract class IntentManagerFactory implements FactoryInterface
+abstract class AbstractIntentManagerFactory implements FactoryInterface
 {
     protected $configKey = null;
 
