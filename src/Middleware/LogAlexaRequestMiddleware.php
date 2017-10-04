@@ -13,7 +13,8 @@ namespace TravelloAlexaZf\Middleware;
 
 use Fig\Http\Message\RequestMethodInterface;
 use Interop\Http\ServerMiddleware\DelegateInterface;
-use Interop\Http\ServerMiddleware\MiddlewareInterface as ServerMiddlewareInterface;
+use Interop\Http\ServerMiddleware\MiddlewareInterface;
+use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
 /**
@@ -21,7 +22,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
  *
  * @package TravelloAlexaZf\Middleware
  */
-class LogAlexaRequestMiddleware implements ServerMiddlewareInterface
+class LogAlexaRequestMiddleware implements MiddlewareInterface
 {
     /** @var bool */
     private $logFlag = false;
@@ -40,7 +41,7 @@ class LogAlexaRequestMiddleware implements ServerMiddlewareInterface
      * @param Request           $request
      * @param DelegateInterface $delegate
      *
-     * @return mixed
+     * @return ResponseInterface
      */
     public function process(Request $request, DelegateInterface $delegate)
     {

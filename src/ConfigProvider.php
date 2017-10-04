@@ -15,6 +15,7 @@ use TravelloAlexaLibrary\Request\AlexaRequest;
 use TravelloAlexaLibrary\Request\Certificate\CertificateLoader;
 use TravelloAlexaLibrary\Request\Certificate\CertificateValidator;
 use TravelloAlexaLibrary\Response\AlexaResponse;
+use TravelloAlexaZf\Configuration\SkillConfiguration;
 use TravelloAlexaZf\Middleware\LogAlexaRequestMiddleware;
 use TravelloAlexaZf\Middleware\LogAlexaRequestMiddlewareFactory;
 use TravelloAlexaZf\Request\AlexaRequestFactory;
@@ -39,6 +40,8 @@ class ConfigProvider
                 'factories' => [
                     AlexaRequest::class  => AlexaRequestFactory::class,
                     AlexaResponse::class => InvokableFactory::class,
+
+                    SkillConfiguration::class => InvokableFactory::class,
 
                     CertificateLoader::class    => CertificateLoaderFactory::class,
                     CertificateValidator::class => CertificateValidatorFactory::class,
