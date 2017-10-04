@@ -332,16 +332,16 @@
         },
         {
             "name": "travello-gmbh/amazon-alexa-skill-library",
-            "version": "2.0.1",
+            "version": "2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/travello-gmbh/amazon-alexa-skill-library.git",
-                "reference": "29bf6f814afd12747fab76bbbb90ae9dd91319e1"
+                "reference": "9beb4b7b9b1e11cc65d49a131af83f3bb8be0b81"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/travello-gmbh/amazon-alexa-skill-library/zipball/29bf6f814afd12747fab76bbbb90ae9dd91319e1",
-                "reference": "29bf6f814afd12747fab76bbbb90ae9dd91319e1",
+                "url": "https://api.github.com/repos/travello-gmbh/amazon-alexa-skill-library/zipball/9beb4b7b9b1e11cc65d49a131af83f3bb8be0b81",
+                "reference": "9beb4b7b9b1e11cc65d49a131af83f3bb8be0b81",
                 "shasum": ""
             },
             "require": {
@@ -368,7 +368,7 @@
             ],
             "description": "PHP Library for Amazon Alexa Skills ",
             "homepage": "https://www.travello.audio",
-            "time": "2017-10-04T11:32:40+00:00"
+            "time": "2017-10-04T14:00:20+00:00"
         },
         {
             "name": "zendframework/zend-diactoros",

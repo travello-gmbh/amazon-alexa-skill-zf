@@ -22,6 +22,9 @@ use Zend\ServiceManager\Factory\FactoryInterface;
  */
 abstract class AbstractIntentManagerFactory implements FactoryInterface
 {
+    /**
+     * @var string
+     */
     protected $configKey = null;
 
     /**
