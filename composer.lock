@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "7c80c6ee5ffeb2187f7f8c1597851540",
+    "content-hash": "ed6f66ef9fc06f8cda29af63326dfb87",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -332,16 +332,16 @@
         },
         {
             "name": "travello-gmbh/amazon-alexa-skill-library",
-            "version": "2.0.4",
+            "version": "2.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/travello-gmbh/amazon-alexa-skill-library.git",
-                "reference": "7caf55ca7212cc597c74525a1f4d0e85959208df"
+                "reference": "db9db53c9602ba69116d694ed42d3cffc63d88bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/travello-gmbh/amazon-alexa-skill-library/zipball/7caf55ca7212cc597c74525a1f4d0e85959208df",
-                "reference": "7caf55ca7212cc597c74525a1f4d0e85959208df",
+                "url": "https://api.github.com/repos/travello-gmbh/amazon-alexa-skill-library/zipball/db9db53c9602ba69116d694ed42d3cffc63d88bb",
+                "reference": "db9db53c9602ba69116d694ed42d3cffc63d88bb",
                 "shasum": ""
             },
             "require": {
@@ -368,7 +368,7 @@
             ],
             "description": "PHP Library for Amazon Alexa Skills ",
             "homepage": "https://www.travello.audio",
-            "time": "2017-10-05T14:34:24+00:00"
+            "time": "2017-10-05T18:35:13+00:00"
         },
         {
             "name": "zendframework/zend-diactoros",
@@ -477,6 +477,55 @@
                 "psr-7"
             ],
             "time": "2017-01-24T22:28:12+00:00"
+        },
+        {
+            "name": "zendframework/zend-expressive-template",
+            "version": "1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/zend-expressive-template.git",
+                "reference": "23922f96b32ab6e64fc551ec06b81fd047828765"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/zend-expressive-template/zipball/23922f96b32ab6e64fc551ec06b81fd047828765",
+                "reference": "23922f96b32ab6e64fc551ec06b81fd047828765",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.7",
+                "zendframework/zend-coding-standard": "~1.0.0"
+            },
+            "suggest": {
+                "zendframework/zend-expressive-platesrenderer": "^0.1 to use the Plates template renderer",
+                "zendframework/zend-expressive-twigrenderer": "^0.1 to use the Twig template renderer",
+                "zendframework/zend-expressive-zendviewrenderer": "^0.1 to use the zend-view PhpRenderer template renderer"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev",
+                    "dev-develop": "1.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Zend\\Expressive\\Template\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Template subcomponent for Expressive",
+            "keywords": [
+                "expressive",
+                "template"
+            ],
+            "time": "2017-01-11T18:42:34+00:00"
         },
         {
             "name": "zendframework/zend-servicemanager",

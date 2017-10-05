@@ -17,6 +17,10 @@ use TravelloAlexaLibrary\Request\Certificate\CertificateLoader;
 use TravelloAlexaLibrary\Request\Certificate\CertificateValidator;
 use TravelloAlexaLibrary\Response\AlexaResponse;
 use TravelloAlexaLibrary\TextHelper\TextHelper;
+use TravelloAlexaZf\Action\HtmlPageAction;
+use TravelloAlexaZf\Action\HtmlPageActionFactory;
+use TravelloAlexaZf\Action\SkillAction;
+use TravelloAlexaZf\Action\SkillActionFactory;
 use TravelloAlexaZf\Intent\IntentManager;
 use TravelloAlexaZf\Intent\IntentManagerFactory;
 use TravelloAlexaZf\Middleware\CheckApplicationMiddleware;
@@ -52,6 +56,9 @@ class ConfigProvider
                 'factories' => [
                     AlexaRequest::class  => AlexaRequestFactory::class,
                     AlexaResponse::class => InvokableFactory::class,
+
+                    HtmlPageAction::class => HtmlPageActionFactory::class,
+                    SkillAction::class    => SkillActionFactory::class,
 
                     SkillConfiguration::class => InvokableFactory::class,
                     TextHelper::class         => TextHelperFactory::class,
