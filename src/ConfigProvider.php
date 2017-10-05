@@ -19,8 +19,16 @@ use TravelloAlexaLibrary\Response\AlexaResponse;
 use TravelloAlexaLibrary\TextHelper\TextHelper;
 use TravelloAlexaZf\Intent\IntentManager;
 use TravelloAlexaZf\Intent\IntentManagerFactory;
+use TravelloAlexaZf\Middleware\CheckApplicationMiddleware;
+use TravelloAlexaZf\Middleware\CheckApplicationMiddlewareFactory;
+use TravelloAlexaZf\Middleware\ConfigureSkillMiddleware;
+use TravelloAlexaZf\Middleware\ConfigureSkillMiddlewareFactory;
 use TravelloAlexaZf\Middleware\LogAlexaRequestMiddleware;
 use TravelloAlexaZf\Middleware\LogAlexaRequestMiddlewareFactory;
+use TravelloAlexaZf\Middleware\SetLocaleMiddleware;
+use TravelloAlexaZf\Middleware\SetLocaleMiddlewareFactory;
+use TravelloAlexaZf\Middleware\ValidateCertificateMiddleware;
+use TravelloAlexaZf\Middleware\ValidateCertificateMiddlewareFactory;
 use TravelloAlexaZf\Request\AlexaRequestFactory;
 use TravelloAlexaZf\Request\Certificate\CertificateLoaderFactory;
 use TravelloAlexaZf\Request\Certificate\CertificateValidatorFactory;
@@ -52,7 +60,11 @@ class ConfigProvider
                     CertificateLoader::class    => CertificateLoaderFactory::class,
                     CertificateValidator::class => CertificateValidatorFactory::class,
 
-                    LogAlexaRequestMiddleware::class => LogAlexaRequestMiddlewareFactory::class,
+                    CheckApplicationMiddleware::class    => CheckApplicationMiddlewareFactory::class,
+                    ConfigureSkillMiddleware::class      => ConfigureSkillMiddlewareFactory::class,
+                    LogAlexaRequestMiddleware::class     => LogAlexaRequestMiddlewareFactory::class,
+                    SetLocaleMiddleware::class           => SetLocaleMiddlewareFactory::class,
+                    ValidateCertificateMiddleware::class => ValidateCertificateMiddlewareFactory::class,
                 ],
             ],
         ];

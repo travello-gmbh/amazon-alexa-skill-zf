@@ -12,6 +12,7 @@
 namespace TravelloAlexaZf\TextHelper;
 
 use Interop\Container\ContainerInterface;
+use TravelloAlexaLibrary\Configuration\SkillConfiguration;
 use TravelloAlexaLibrary\Configuration\SkillConfigurationInterface;
 use TravelloAlexaLibrary\TextHelper\TextHelper;
 use Zend\ServiceManager\Factory\FactoryInterface;
@@ -38,7 +39,7 @@ class TextHelperFactory implements FactoryInterface
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
         /** @var SkillConfigurationInterface $skillConfiguration */
-        $skillConfiguration = $container->get(SkillConfigurationInterface::class);
+        $skillConfiguration = $container->get(SkillConfiguration::class);
 
         $texts = $skillConfiguration->getTexts();
 

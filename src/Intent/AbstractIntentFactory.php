@@ -15,6 +15,7 @@ use Interop\Container\ContainerInterface;
 use TravelloAlexaLibrary\Intent\IntentInterface;
 use TravelloAlexaLibrary\Request\AlexaRequest;
 use TravelloAlexaLibrary\Response\AlexaResponse;
+use TravelloAlexaLibrary\TextHelper\TextHelper;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
 /**
@@ -35,9 +36,10 @@ class AbstractIntentFactory implements FactoryInterface
     {
         $alexaRequest  = $container->get(AlexaRequest::class);
         $alexaResponse = $container->get(AlexaResponse::class);
+        $textHelper    = $container->get(TextHelper::class);
 
         /** @var IntentInterface $intent */
-        $intent = new $requestedName($alexaRequest, $alexaResponse);
+        $intent = new $requestedName($alexaRequest, $alexaResponse, $textHelper);
 
         return $intent;
     }

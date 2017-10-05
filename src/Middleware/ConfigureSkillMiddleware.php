@@ -56,11 +56,8 @@ class ConfigureSkillMiddleware implements MiddlewareInterface
 
         $skillName = $result->getMatchedParams()['skillName'];
 
-        $skillConfig = $this->config['skills'][$skillName];
-
         $this->skillConfiguration->setName($skillName);
-        $this->skillConfiguration->setApplicationId($skillConfig['applicationId']);
-        $this->skillConfiguration->setIntents([$skillConfig['intents']]);
+        $this->skillConfiguration->setConfig($this->config['skills'][$skillName]);
 
         return $delegate->process($request);
     }

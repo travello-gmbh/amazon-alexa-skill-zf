@@ -13,9 +13,10 @@ namespace TravelloAlexaZf\Application;
 
 use Interop\Container\ContainerInterface;
 use TravelloAlexaLibrary\Application\AbstractAlexaApplication;
+use TravelloAlexaLibrary\Configuration\SkillConfiguration;
 use TravelloAlexaLibrary\Request\AlexaRequest;
-use TravelloAlexaLibrary\Request\Certificate\CertificateValidator;
 use TravelloAlexaLibrary\Response\AlexaResponse;
+use TravelloAlexaZf\Intent\IntentManager;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
 /**
@@ -37,18 +38,14 @@ class AlexaApplicationFactory implements FactoryInterface
         $requestedName,
         array $options = null
     ): AbstractAlexaApplication {
-        $intentManagerClass   = $options['intentManagerClass'];
-        $textHelperClass      = $options['textHelperClass'];
-
-        $alexaRequest         = $container->get(AlexaRequest::class);
-        $alexaResponse        = $container->get(AlexaResponse::class);
-        $intentManager        = $container->get($intentManagerClass);
-        $certificateValidator = $container->get(CertificateValidator::class);
-        $textHelper           = $container->get($textHelperClass);
+        $alexaRequest       = $container->get(AlexaRequest::class);
+        $alexaResponse      = $container->get(AlexaResponse::class);
+        $intentManager      = $container->get(IntentManager::class);
+        $skillConfiguration = $container->get(SkillConfiguration::class);
 
         /** @var AbstractAlexaApplication $alexaApplication */
         $alexaApplication = new $requestedName(
-            $alexaRequest, $alexaResponse, $intentManager, $certificateValidator, $textHelper
+            $alexaRequest, $alexaResponse, $intentManager, $skillConfiguration
         );
 
         return $alexaApplication;
