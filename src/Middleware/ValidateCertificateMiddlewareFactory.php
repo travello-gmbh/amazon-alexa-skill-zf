@@ -9,42 +9,30 @@
  *
  */
 
-namespace TravelloAlexaZf\Intent;
+namespace TravelloAlexaZf\Middleware;
 
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\Config;
+use TravelloAlexaLibrary\Request\Certificate\CertificateValidator;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
 /**
- * Class IntentManagerFactory
+ * Class ValidateCertificateMiddlewareFactory
  *
- * @package Hello\Intent
+ * @package TravelloAlexaZf\Middleware
  */
-abstract class AbstractIntentManagerFactory implements FactoryInterface
+class ValidateCertificateMiddlewareFactory implements FactoryInterface
 {
-    /**
-     * @var string
-     */
-    protected $configKey = null;
-
     /**
      * @param ContainerInterface $container
      * @param string             $requestedName
      * @param array|null         $options
      *
-     * @return AbstractIntentManager
+     * @return ValidateCertificateMiddleware
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        $manager = new $requestedName($container);
+        $certificateValidator = $container->get(CertificateValidator::class);
 
-        $config = $container->has('config') ? $container->get('config') : [];
-        $config = isset($config[$this->configKey]) ? $config[$this->configKey] : [];
-
-        if (!empty($config)) {
-            (new Config($config))->configureServiceManager($manager);
-        }
-
-        return $manager;
+        return new ValidateCertificateMiddleware($certificateValidator);
     }
 }

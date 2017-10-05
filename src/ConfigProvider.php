@@ -11,15 +11,20 @@
 
 namespace TravelloAlexaZf;
 
+use TravelloAlexaLibrary\Configuration\SkillConfiguration;
 use TravelloAlexaLibrary\Request\AlexaRequest;
 use TravelloAlexaLibrary\Request\Certificate\CertificateLoader;
 use TravelloAlexaLibrary\Request\Certificate\CertificateValidator;
 use TravelloAlexaLibrary\Response\AlexaResponse;
+use TravelloAlexaLibrary\TextHelper\TextHelper;
+use TravelloAlexaZf\Intent\IntentManager;
+use TravelloAlexaZf\Intent\IntentManagerFactory;
 use TravelloAlexaZf\Middleware\LogAlexaRequestMiddleware;
 use TravelloAlexaZf\Middleware\LogAlexaRequestMiddlewareFactory;
 use TravelloAlexaZf\Request\AlexaRequestFactory;
 use TravelloAlexaZf\Request\Certificate\CertificateLoaderFactory;
 use TravelloAlexaZf\Request\Certificate\CertificateValidatorFactory;
+use TravelloAlexaZf\TextHelper\TextHelperFactory;
 use Zend\ServiceManager\Factory\InvokableFactory;
 
 /**
@@ -39,6 +44,10 @@ class ConfigProvider
                 'factories' => [
                     AlexaRequest::class  => AlexaRequestFactory::class,
                     AlexaResponse::class => InvokableFactory::class,
+
+                    SkillConfiguration::class => InvokableFactory::class,
+                    TextHelper::class         => TextHelperFactory::class,
+                    IntentManager::class      => IntentManagerFactory::class,
 
                     CertificateLoader::class    => CertificateLoaderFactory::class,
                     CertificateValidator::class => CertificateValidatorFactory::class,

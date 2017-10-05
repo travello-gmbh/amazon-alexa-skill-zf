@@ -33,7 +33,9 @@ class AlexaApplicationFactory implements FactoryInterface
      * @return AbstractAlexaApplication
      */
     public function __invoke(
-        ContainerInterface $container, $requestedName, array $options = null
+        ContainerInterface $container,
+        $requestedName,
+        array $options = null
     ): AbstractAlexaApplication {
         $intentManagerClass   = $options['intentManagerClass'];
         $textHelperClass      = $options['textHelperClass'];

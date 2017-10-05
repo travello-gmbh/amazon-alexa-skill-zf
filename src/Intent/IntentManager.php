@@ -26,7 +26,7 @@ use Zend\ServiceManager\Exception\InvalidServiceException;
  *
  * @package TravelloAlexaZf\Intent
  */
-abstract class AbstractIntentManager extends AbstractPluginManager
+class IntentManager extends AbstractPluginManager
 {
     /**
      * @var array
