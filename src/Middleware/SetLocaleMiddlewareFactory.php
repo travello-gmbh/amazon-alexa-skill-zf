@@ -12,31 +12,29 @@
 namespace TravelloAlexaZf\Middleware;
 
 use Interop\Container\ContainerInterface;
-use TravelloAlexaLibrary\Configuration\SkillConfiguration;
+use TravelloAlexaLibrary\Request\AlexaRequest;
+use TravelloAlexaLibrary\TextHelper\TextHelper;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
 /**
- * Class ConfigureSkillMiddlewareFactory
+ * Class SetLocaleMiddlewareFactory
  *
  * @package TravelloAlexaZf\Middleware
  */
-class ConfigureSkillMiddlewareFactory implements FactoryInterface
+class SetLocaleMiddlewareFactory implements FactoryInterface
 {
     /**
      * @param ContainerInterface $container
      * @param string             $requestedName
      * @param array|null         $options
      *
-     * @return ConfigureSkillMiddleware
+     * @return SetLocaleMiddleware
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        /** @var array $config */
-        $config = $container->get('Config');
+        $textHelper   = $container->get(TextHelper::class);
+        $alexaRequest = $container->get(AlexaRequest::class);
 
-        /** @var SkillConfiguration $skillConfiguration */
-        $skillConfiguration = $container->get(SkillConfiguration::class);
-
-        return new ConfigureSkillMiddleware($config, $skillConfiguration);
+        return new SetLocaleMiddleware($textHelper, $alexaRequest);
     }
 }

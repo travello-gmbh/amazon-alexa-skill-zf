@@ -15,7 +15,7 @@ use Interop\Http\ServerMiddleware\DelegateInterface;
 use Interop\Http\ServerMiddleware\MiddlewareInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use TravelloAlexaZf\Configuration\SkillConfiguration;
+use TravelloAlexaLibrary\Configuration\SkillConfiguration;
 use Zend\Expressive\Router\RouteResult;
 
 /**

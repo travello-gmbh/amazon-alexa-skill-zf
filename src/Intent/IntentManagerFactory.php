@@ -12,15 +12,16 @@
 namespace TravelloAlexaZf\Intent;
 
 use Interop\Container\ContainerInterface;
+use TravelloAlexaLibrary\Configuration\SkillConfigurationInterface;
 use Zend\ServiceManager\Config;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
 /**
  * Class IntentManagerFactory
  *
- * @package Hello\Intent
+ * @package TravelloAlexaZf\Intent
  */
-abstract class AbstractIntentManagerFactory implements FactoryInterface
+class IntentManagerFactory implements FactoryInterface
 {
     /**
      * @var string
@@ -32,17 +33,19 @@ abstract class AbstractIntentManagerFactory implements FactoryInterface
      * @param string             $requestedName
      * @param array|null         $options
      *
-     * @return AbstractIntentManager
+     * @return IntentManager
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        $manager = new $requestedName($container);
+        /** @var SkillConfigurationInterface $skillConfiguration */
+        $skillConfiguration = $container->get(SkillConfigurationInterface::class);
 
-        $config = $container->has('config') ? $container->get('config') : [];
-        $config = isset($config[$this->configKey]) ? $config[$this->configKey] : [];
+        $intentConfig = $skillConfiguration->getIntents();
 
-        if (!empty($config)) {
-            (new Config($config))->configureServiceManager($manager);
+        $manager = new IntentManager($container);
+
+        if (!empty($intentConfig)) {
+            (new Config($intentConfig))->configureServiceManager($manager);
         }
 
         return $manager;

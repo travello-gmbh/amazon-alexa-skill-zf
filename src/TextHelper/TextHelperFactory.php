@@ -9,34 +9,39 @@
  *
  */
 
-namespace TravelloAlexaZf\Middleware;
+namespace TravelloAlexaZf\TextHelper;
 
 use Interop\Container\ContainerInterface;
-use TravelloAlexaLibrary\Configuration\SkillConfiguration;
+use TravelloAlexaLibrary\Configuration\SkillConfigurationInterface;
+use TravelloAlexaLibrary\TextHelper\TextHelper;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
 /**
- * Class ConfigureSkillMiddlewareFactory
+ * Class TextHelperFactory
  *
- * @package TravelloAlexaZf\Middleware
+ * @package TravelloAlexaZf\TextHelper
  */
-class ConfigureSkillMiddlewareFactory implements FactoryInterface
+class TextHelperFactory implements FactoryInterface
 {
+    /**
+     * @var string
+     */
+    protected $configKey = null;
+
     /**
      * @param ContainerInterface $container
      * @param string             $requestedName
      * @param array|null         $options
      *
-     * @return ConfigureSkillMiddleware
+     * @return TextHelper
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        /** @var array $config */
-        $config = $container->get('Config');
+        /** @var SkillConfigurationInterface $skillConfiguration */
+        $skillConfiguration = $container->get(SkillConfigurationInterface::class);
 
-        /** @var SkillConfiguration $skillConfiguration */
-        $skillConfiguration = $container->get(SkillConfiguration::class);
+        $texts = $skillConfiguration->getTexts();
 
-        return new ConfigureSkillMiddleware($config, $skillConfiguration);
+        return new TextHelper($texts);
     }
 }

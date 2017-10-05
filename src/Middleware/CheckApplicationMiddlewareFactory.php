@@ -13,7 +13,7 @@ namespace TravelloAlexaZf\Middleware;
 
 use Interop\Container\ContainerInterface;
 use TravelloAlexaLibrary\Request\AlexaRequest;
-use TravelloAlexaZf\Configuration\SkillConfiguration;
+use TravelloAlexaLibrary\Configuration\SkillConfiguration;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
 /**
