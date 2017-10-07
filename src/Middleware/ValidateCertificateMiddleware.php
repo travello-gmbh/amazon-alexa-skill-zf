@@ -32,7 +32,7 @@ class ValidateCertificateMiddleware implements MiddlewareInterface
      *
      * @param CertificateValidator $certificateValidator
      */
-    public function __construct(CertificateValidator $certificateValidator)
+    public function __construct(CertificateValidator $certificateValidator = null)
     {
         $this->certificateValidator = $certificateValidator;
     }
@@ -45,7 +45,9 @@ class ValidateCertificateMiddleware implements MiddlewareInterface
      */
     public function process(ServerRequestInterface $request, DelegateInterface $delegate)
     {
-        $this->certificateValidator->validate();
+        if ($this->certificateValidator) {
+            $this->certificateValidator->validate();
+        }
 
         return $delegate->process($request);
     }

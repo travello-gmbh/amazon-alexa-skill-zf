@@ -12,6 +12,7 @@
 namespace TravelloAlexaZf\Middleware;
 
 use Interop\Container\ContainerInterface;
+use TravelloAlexaLibrary\Request\AlexaRequest;
 use TravelloAlexaLibrary\Request\Certificate\CertificateValidator;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
@@ -31,7 +32,11 @@ class ValidateCertificateMiddlewareFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        $certificateValidator = $container->get(CertificateValidator::class);
+        if ($container->get(AlexaRequest::class)) {
+            $certificateValidator = $container->get(CertificateValidator::class);
+        } else {
+            $certificateValidator = null;
+        }
 
         return new ValidateCertificateMiddleware($certificateValidator);
     }

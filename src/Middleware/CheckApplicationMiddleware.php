@@ -36,7 +36,7 @@ class CheckApplicationMiddleware implements MiddlewareInterface
      * @param string       $applicationId
      * @param AlexaRequest $alexaRequest
      */
-    public function __construct($applicationId, AlexaRequest $alexaRequest)
+    public function __construct($applicationId = null, AlexaRequest $alexaRequest = null)
     {
         $this->applicationId = $applicationId;
         $this->alexaRequest  = $alexaRequest;
@@ -50,7 +50,9 @@ class CheckApplicationMiddleware implements MiddlewareInterface
      */
     public function process(ServerRequestInterface $request, DelegateInterface $delegate)
     {
-        $this->alexaRequest->checkApplication($this->applicationId);
+        if ($this->alexaRequest) {
+            $this->alexaRequest->checkApplication($this->applicationId);
+        }
 
         return $delegate->process($request);
     }

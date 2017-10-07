@@ -37,7 +37,7 @@ class SetLocaleMiddleware implements MiddlewareInterface
      * @param TextHelperInterface $textHelper
      * @param AlexaRequest        $alexaRequest
      */
-    public function __construct(TextHelperInterface $textHelper, AlexaRequest $alexaRequest)
+    public function __construct(TextHelperInterface $textHelper, AlexaRequest $alexaRequest = null)
     {
         $this->textHelper   = $textHelper;
         $this->alexaRequest = $alexaRequest;
@@ -51,9 +51,11 @@ class SetLocaleMiddleware implements MiddlewareInterface
      */
     public function process(ServerRequestInterface $request, DelegateInterface $delegate)
     {
-        $locale = $this->alexaRequest->getRequest()->getLocale();
+        if ($this->alexaRequest) {
+            $locale = $this->alexaRequest->getRequest()->getLocale();
 
-        $this->textHelper->setLocale($locale);
+            $this->textHelper->setLocale($locale);
+        }
 
         return $delegate->process($request);
     }

@@ -32,12 +32,18 @@ class CheckApplicationMiddlewareFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        /** @var SkillConfiguration $skillConfiguration */
-        $skillConfiguration = $container->get(SkillConfiguration::class);
-
         /** @var AlexaRequest $alexaRequest */
         $alexaRequest = $container->get(AlexaRequest::class);
 
-        return new CheckApplicationMiddleware($skillConfiguration->getApplicationId(), $alexaRequest);
+        if ($alexaRequest) {
+            /** @var SkillConfiguration $skillConfiguration */
+            $skillConfiguration = $container->get(SkillConfiguration::class);
+
+            $applicationId = $skillConfiguration->getApplicationId();
+        } else {
+            $applicationId = null;
+        }
+
+        return new CheckApplicationMiddleware($applicationId, $alexaRequest);
     }
 }

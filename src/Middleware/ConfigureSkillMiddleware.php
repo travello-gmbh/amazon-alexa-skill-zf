@@ -54,10 +54,17 @@ class ConfigureSkillMiddleware implements MiddlewareInterface
         /** @var RouteResult $result */
         $result = $request->getAttribute(RouteResult::class);
 
-        $skillName = $result->getMatchedParams()['skillName'];
+        $matchedParams = $result->getMatchedParams();
 
-        $this->skillConfiguration->setName($skillName);
-        $this->skillConfiguration->setConfig($this->config['skills'][$skillName]);
+        if (isset($matchedParams['skillName'])) {
+            $skillName = $matchedParams['skillName'];
+
+            $this->skillConfiguration->setName($skillName);
+
+            if (isset($this->config['skills'])) {
+                $this->skillConfiguration->setConfig($this->config['skills'][$skillName]);
+            }
+        }
 
         return $delegate->process($request);
     }

@@ -35,6 +35,10 @@ class AlexaRequestFactory implements FactoryInterface
     {
         $serverRequest = ServerRequestFactory::fromGlobals();
 
+        if (empty($serverRequest->getBody()->getContents())) {
+            return null;
+        }
+
         /** @var AlexaRequest $alexaRequest */
         $alexaRequest = RequestTypeFactory::createFromData(
             $serverRequest->getBody()->getContents()
