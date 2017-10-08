@@ -9,36 +9,39 @@
  *
  */
 
-namespace TravelloAlexaZf\Response;
+namespace TravelloAlexaZf\Session;
 
 use Interop\Container\ContainerInterface;
+use TravelloAlexaLibrary\Configuration\SkillConfiguration;
 use TravelloAlexaLibrary\Request\AlexaRequest;
-use TravelloAlexaLibrary\Response\AlexaResponse;
 use TravelloAlexaLibrary\Session\SessionContainer;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
 /**
- * Class AlexaResponseFactory
+ * Class SessionContainerFactory
  *
- * @package TravelloAlexaZf\Response
+ * @package TravelloAlexaZf\Session
  */
-class AlexaResponseFactory implements FactoryInterface
+class SessionContainerFactory implements FactoryInterface
 {
     /**
      * @param ContainerInterface $container
      * @param string             $requestedName
      * @param array|null         $options
      *
-     * @return AlexaResponse
+     * @return SessionContainer
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
         /** @var AlexaRequest $alexaRequest */
-        $sessionContainer = $container->get(SessionContainer::class);
+        $alexaRequest = $container->get(AlexaRequest::class);
 
-        $alexaResponse = new AlexaResponse();
-        $alexaResponse->setSessionContainer($sessionContainer);
+        /** @var SkillConfiguration $skillConfiguration */
+        $skillConfiguration = $container->get(SkillConfiguration::class);
 
-        return $alexaResponse;
+        $sessionContainer = new SessionContainer($skillConfiguration->getSessionDefaults());
+        $sessionContainer->initAttributes($alexaRequest);
+
+        return $sessionContainer;
     }
 }

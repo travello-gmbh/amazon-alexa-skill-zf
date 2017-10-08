@@ -11,16 +11,19 @@
 
 namespace TravelloAlexaZf;
 
+use TravelloAlexaLibrary\Application\AlexaApplication;
 use TravelloAlexaLibrary\Configuration\SkillConfiguration;
 use TravelloAlexaLibrary\Request\AlexaRequest;
 use TravelloAlexaLibrary\Request\Certificate\CertificateLoader;
 use TravelloAlexaLibrary\Request\Certificate\CertificateValidator;
 use TravelloAlexaLibrary\Response\AlexaResponse;
+use TravelloAlexaLibrary\Session\SessionContainer;
 use TravelloAlexaLibrary\TextHelper\TextHelper;
 use TravelloAlexaZf\Action\HtmlPageAction;
 use TravelloAlexaZf\Action\HtmlPageActionFactory;
 use TravelloAlexaZf\Action\SkillAction;
 use TravelloAlexaZf\Action\SkillActionFactory;
+use TravelloAlexaZf\Application\AlexaApplicationFactory;
 use TravelloAlexaZf\Intent\IntentManager;
 use TravelloAlexaZf\Intent\IntentManagerFactory;
 use TravelloAlexaZf\Middleware\CheckApplicationMiddleware;
@@ -37,6 +40,7 @@ use TravelloAlexaZf\Request\AlexaRequestFactory;
 use TravelloAlexaZf\Request\Certificate\CertificateLoaderFactory;
 use TravelloAlexaZf\Request\Certificate\CertificateValidatorFactory;
 use TravelloAlexaZf\Response\AlexaResponseFactory;
+use TravelloAlexaZf\Session\SessionContainerFactory;
 use TravelloAlexaZf\TextHelper\TextHelperFactory;
 use Zend\ServiceManager\Factory\InvokableFactory;
 
@@ -58,9 +62,11 @@ class ConfigProvider
                     HtmlPageAction::class => HtmlPageActionFactory::class,
                     SkillAction::class    => SkillActionFactory::class,
 
-                    AlexaRequest::class  => AlexaRequestFactory::class,
-                    AlexaResponse::class => AlexaResponseFactory::class,
+                    AlexaApplication::class => AlexaApplicationFactory::class,
+                    AlexaRequest::class     => AlexaRequestFactory::class,
+                    AlexaResponse::class    => AlexaResponseFactory::class,
 
+                    SessionContainer::class   => SessionContainerFactory::class,
                     SkillConfiguration::class => InvokableFactory::class,
                     TextHelper::class         => TextHelperFactory::class,
                     IntentManager::class      => IntentManagerFactory::class,
