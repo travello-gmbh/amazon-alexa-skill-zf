@@ -12,7 +12,7 @@
     "fig/http-message-util": "^1.1",
     "http-interop/http-middleware": "^0.4.1",
     "psr/http-message": "^1.0",
-    "travello-gmbh/amazon-alexa-skill-library": "^2.0",
+    "travello-gmbh/amazon-alexa-skill-library": "^2.1.0",
     "zendframework/zend-expressive-router": "^2.1",
     "zendframework/zend-expressive-template": "^1.0",
     "zendframework/zend-servicemanager": "^3.3"

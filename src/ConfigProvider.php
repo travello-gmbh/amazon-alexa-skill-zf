@@ -36,6 +36,7 @@ use TravelloAlexaZf\Middleware\ValidateCertificateMiddlewareFactory;
 use TravelloAlexaZf\Request\AlexaRequestFactory;
 use TravelloAlexaZf\Request\Certificate\CertificateLoaderFactory;
 use TravelloAlexaZf\Request\Certificate\CertificateValidatorFactory;
+use TravelloAlexaZf\Response\AlexaResponseFactory;
 use TravelloAlexaZf\TextHelper\TextHelperFactory;
 use Zend\ServiceManager\Factory\InvokableFactory;
 
@@ -54,11 +55,11 @@ class ConfigProvider
         return [
             'dependencies' => [
                 'factories' => [
-                    AlexaRequest::class  => AlexaRequestFactory::class,
-                    AlexaResponse::class => InvokableFactory::class,
-
                     HtmlPageAction::class => HtmlPageActionFactory::class,
                     SkillAction::class    => SkillActionFactory::class,
+
+                    AlexaRequest::class  => AlexaRequestFactory::class,
+                    AlexaResponse::class => AlexaResponseFactory::class,
 
                     SkillConfiguration::class => InvokableFactory::class,
                     TextHelper::class         => TextHelperFactory::class,

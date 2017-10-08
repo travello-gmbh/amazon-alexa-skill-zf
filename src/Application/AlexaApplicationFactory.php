@@ -12,7 +12,7 @@
 namespace TravelloAlexaZf\Application;
 
 use Interop\Container\ContainerInterface;
-use TravelloAlexaLibrary\Application\AbstractAlexaApplication;
+use TravelloAlexaLibrary\Application\AlexaApplication;
 use TravelloAlexaLibrary\Configuration\SkillConfiguration;
 use TravelloAlexaLibrary\Request\AlexaRequest;
 use TravelloAlexaLibrary\Response\AlexaResponse;
@@ -31,19 +31,19 @@ class AlexaApplicationFactory implements FactoryInterface
      * @param string             $requestedName
      * @param array|null|null    $options
      *
-     * @return AbstractAlexaApplication
+     * @return AlexaApplication
      */
     public function __invoke(
         ContainerInterface $container,
         $requestedName,
         array $options = null
-    ): AbstractAlexaApplication {
+    ): AlexaApplication {
         $alexaRequest       = $container->get(AlexaRequest::class);
         $alexaResponse      = $container->get(AlexaResponse::class);
         $intentManager      = $container->get(IntentManager::class);
         $skillConfiguration = $container->get(SkillConfiguration::class);
 
-        /** @var AbstractAlexaApplication $alexaApplication */
+        /** @var AlexaApplication $alexaApplication */
         $alexaApplication = new $requestedName(
             $alexaRequest, $alexaResponse, $intentManager, $skillConfiguration
         );
