@@ -43,6 +43,6 @@ class TextHelperFactory implements FactoryInterface
 
         $texts = $skillConfiguration->getTexts();
 
-        return new TextHelper($texts);
+        return new $requestedName($texts);
     }
 }
