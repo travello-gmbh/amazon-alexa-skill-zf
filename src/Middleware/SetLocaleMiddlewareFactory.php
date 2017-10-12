@@ -33,14 +33,18 @@ class SetLocaleMiddlewareFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        /** @var SkillConfiguration $skillConfiguration */
-        $skillConfiguration = $container->get(SkillConfiguration::class);
-
-        /** @var TextHelper $textHelper */
-        $textHelper = $container->get($skillConfiguration->getTextHelperClass());
-
         /** @var AlexaRequest $alexaRequest */
         $alexaRequest = $container->get(AlexaRequest::class);
+
+        if ($alexaRequest) {
+            /** @var SkillConfiguration $skillConfiguration */
+            $skillConfiguration = $container->get(SkillConfiguration::class);
+
+            /** @var TextHelper $textHelper */
+            $textHelper = $container->get($skillConfiguration->getTextHelperClass());
+        } else {
+            $textHelper = null;
+        }
 
         return new SetLocaleMiddleware($textHelper, $alexaRequest);
     }
