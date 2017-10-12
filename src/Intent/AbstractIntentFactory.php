@@ -12,6 +12,7 @@
 namespace TravelloAlexaZf\Intent;
 
 use Interop\Container\ContainerInterface;
+use TravelloAlexaLibrary\Configuration\SkillConfiguration;
 use TravelloAlexaLibrary\Intent\IntentInterface;
 use TravelloAlexaLibrary\Request\AlexaRequest;
 use TravelloAlexaLibrary\Response\AlexaResponse;
@@ -34,9 +35,17 @@ class AbstractIntentFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        $alexaRequest  = $container->get(AlexaRequest::class);
+        /** @var SkillConfiguration $skillConfiguration */
+        $skillConfiguration = $container->get(SkillConfiguration::class);
+
+        /** @var AlexaRequest $alexaRequest */
+        $alexaRequest = $container->get(AlexaRequest::class);
+
+        /** @var AlexaResponse $alexaResponse */
         $alexaResponse = $container->get(AlexaResponse::class);
-        $textHelper    = $container->get(TextHelper::class);
+
+        /** @var TextHelper $textHelper */
+        $textHelper = $container->get($skillConfiguration->getTextHelperClass());
 
         /** @var IntentInterface $intent */
         $intent = new $requestedName($alexaRequest, $alexaResponse, $textHelper);

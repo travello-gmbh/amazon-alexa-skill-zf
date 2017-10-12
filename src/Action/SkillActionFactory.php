@@ -12,6 +12,7 @@
 namespace TravelloAlexaZf\Action;
 
 use Interop\Container\ContainerInterface;
+use TravelloAlexaLibrary\Application\AlexaApplication;
 use TravelloAlexaLibrary\Configuration\SkillConfiguration;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
@@ -34,6 +35,7 @@ class SkillActionFactory implements FactoryInterface
         /** @var SkillConfiguration $skillConfiguration */
         $skillConfiguration = $container->get(SkillConfiguration::class);
 
+        /** @var AlexaApplication $alexaApplication */
         $alexaApplication = $container->get($skillConfiguration->getApplicationClass());
 
         return new SkillAction($alexaApplication);
