@@ -56,7 +56,7 @@ class SkillAction implements ServerMiddlewareInterface
 
             return new JsonResponse($data, 400);
         } catch (Exception $e) {
-            $data = ['error' => 'unexpected error'];
+            $data = ['error' => $e->getMessage()];
 
             return new JsonResponse($data, 400);
         }
