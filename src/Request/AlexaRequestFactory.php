@@ -11,6 +11,7 @@
 
 namespace TravelloAlexaZf\Request;
 
+use Exception;
 use Interop\Container\ContainerInterface;
 use TravelloAlexaLibrary\Request\AlexaRequest;
 use TravelloAlexaLibrary\Request\RequestType\RequestTypeFactory;
@@ -39,11 +40,30 @@ class AlexaRequestFactory implements FactoryInterface
             return null;
         }
 
-        /** @var AlexaRequest $alexaRequest */
-        $alexaRequest = RequestTypeFactory::createFromData(
-            $serverRequest->getBody()->getContents()
-        );
+        if (!$this->isJson($serverRequest->getBody()->getContents())) {
+            return null;
+        }
+
+        try {
+            /** @var AlexaRequest $alexaRequest */
+            $alexaRequest = RequestTypeFactory::createFromData(
+                $serverRequest->getBody()->getContents()
+            );
+        } catch (Exception $e) {
+            return null;
+        }
 
         return $alexaRequest;
+    }
+
+    /**
+     * @param $string
+     *
+     * @return bool
+     */
+    private function isJson($string) {
+        json_decode($string);
+
+        return (json_last_error() == JSON_ERROR_NONE);
     }
 }
