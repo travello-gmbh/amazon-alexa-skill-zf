@@ -332,16 +332,16 @@
         },
         {
             "name": "travello-gmbh/amazon-alexa-skill-library",
-            "version": "2.2.0",
+            "version": "2.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/travello-gmbh/amazon-alexa-skill-library.git",
-                "reference": "6fb93023d4304b749360b4fa3f0524ae32b3cc0c"
+                "reference": "f95ba8e272598d842f5413cac0aea2111990d324"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/travello-gmbh/amazon-alexa-skill-library/zipball/6fb93023d4304b749360b4fa3f0524ae32b3cc0c",
-                "reference": "6fb93023d4304b749360b4fa3f0524ae32b3cc0c",
+                "url": "https://api.github.com/repos/travello-gmbh/amazon-alexa-skill-library/zipball/f95ba8e272598d842f5413cac0aea2111990d324",
+                "reference": "f95ba8e272598d842f5413cac0aea2111990d324",
                 "shasum": ""
             },
             "require": {
@@ -368,7 +368,7 @@
             ],
             "description": "PHP Library for Amazon Alexa Skills ",
             "homepage": "https://www.travello.audio",
-            "time": "2017-11-05T06:54:57+00:00"
+            "time": "2017-11-05T12:13:01+00:00"
         },
         {
             "name": "webimpress/composer-extra-dependency",
