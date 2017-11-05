@@ -44,14 +44,10 @@ class AlexaRequestFactory implements FactoryInterface
             return null;
         }
 
-        try {
-            /** @var AlexaRequest $alexaRequest */
-            $alexaRequest = RequestTypeFactory::createFromData(
-                $serverRequest->getBody()->getContents()
-            );
-        } catch (Exception $e) {
-            return null;
-        }
+        /** @var AlexaRequest $alexaRequest */
+        $alexaRequest = RequestTypeFactory::createFromData(
+            $serverRequest->getBody()->getContents()
+        );
 
         return $alexaRequest;
     }
