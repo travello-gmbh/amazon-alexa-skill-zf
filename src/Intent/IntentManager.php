@@ -11,11 +11,16 @@
 
 namespace TravelloAlexaZf\Intent;
 
+use TravelloAlexaLibrary\Intent\AudioPlayer\PlaybackFinishedIntent;
+use TravelloAlexaLibrary\Intent\AudioPlayer\PlaybackNearlyFinishedIntent;
+use TravelloAlexaLibrary\Intent\AudioPlayer\PlaybackStartedIntent;
+use TravelloAlexaLibrary\Intent\AudioPlayer\PlaybackStoppedIntent;
 use TravelloAlexaLibrary\Intent\CancelIntent;
 use TravelloAlexaLibrary\Intent\HelpIntent;
 use TravelloAlexaLibrary\Intent\IntentInterface;
 use TravelloAlexaLibrary\Intent\LaunchIntent;
 use TravelloAlexaLibrary\Intent\StopIntent;
+use TravelloAlexaLibrary\Intent\System\ExceptionEncountered;
 use TravelloAlexaLibrary\Request\RequestType\LaunchRequestType;
 use TravelloAlexaLibrary\Request\RequestType\SessionEndedRequestType;
 use Zend\ServiceManager\AbstractPluginManager;
@@ -33,19 +38,29 @@ class IntentManager extends AbstractPluginManager
      */
     protected $aliases
         = [
-            LaunchRequestType::NAME       => LaunchIntent::class,
-            SessionEndedRequestType::NAME => StopIntent::class,
-            HelpIntent::NAME              => HelpIntent::class,
-            StopIntent::NAME              => StopIntent::class,
-            CancelIntent::NAME            => CancelIntent::class,
+            LaunchRequestType::NAME            => LaunchIntent::class,
+            SessionEndedRequestType::NAME      => StopIntent::class,
+            HelpIntent::NAME                   => HelpIntent::class,
+            StopIntent::NAME                   => StopIntent::class,
+            CancelIntent::NAME                 => CancelIntent::class,
+            PlaybackFinishedIntent::NAME       => PlaybackFinishedIntent::class,
+            PlaybackNearlyFinishedIntent::NAME => PlaybackNearlyFinishedIntent::class,
+            PlaybackStartedIntent::NAME        => PlaybackStartedIntent::class,
+            PlaybackStoppedIntent::NAME        => PlaybackStoppedIntent::class,
+            ExceptionEncountered::NAME         => ExceptionEncountered::class,
         ];
 
     protected $factories
         = [
-            LaunchIntent::class => AbstractIntentFactory::class,
-            HelpIntent::class   => AbstractIntentFactory::class,
-            StopIntent::class   => AbstractIntentFactory::class,
-            CancelIntent::class => AbstractIntentFactory::class,
+            LaunchIntent::class                 => AbstractIntentFactory::class,
+            HelpIntent::class                   => AbstractIntentFactory::class,
+            StopIntent::class                   => AbstractIntentFactory::class,
+            CancelIntent::class                 => AbstractIntentFactory::class,
+            PlaybackFinishedIntent::class       => AbstractIntentFactory::class,
+            PlaybackNearlyFinishedIntent::class => AbstractIntentFactory::class,
+            PlaybackStartedIntent::class        => AbstractIntentFactory::class,
+            PlaybackStoppedIntent::class        => AbstractIntentFactory::class,
+            ExceptionEncountered::class         => AbstractIntentFactory::class,
         ];
 
     /**
