@@ -41,11 +41,10 @@ class AlexaApplicationFactory implements FactoryInterface
         $alexaRequest       = $container->get(AlexaRequest::class);
         $alexaResponse      = $container->get(AlexaResponse::class);
         $intentManager      = $container->get(IntentManager::class);
-        $skillConfiguration = $container->get(SkillConfiguration::class);
 
         /** @var AlexaApplication $alexaApplication */
         $alexaApplication = new $requestedName(
-            $alexaRequest, $alexaResponse, $intentManager, $skillConfiguration
+            $alexaRequest, $alexaResponse, $intentManager
         );
 
         return $alexaApplication;
