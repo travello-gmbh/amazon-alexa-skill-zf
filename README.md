@@ -1,3 +1,7 @@
+# DEPRECATED
+
+This project is deprecated. Please move to https://github.com/phoice/phlexa-expressive
+
 # Zend Framework Library for Amazon Alexa Skills
 
 This library depends on the basic PHP library for building your own PHP based Amazon 
